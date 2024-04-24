@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 
 public abstract class Reservation {
     protected int jour;
@@ -9,5 +8,9 @@ public abstract class Reservation {
         this.jour = jour ;
         this.mois = mois ;
     }
-    
+    @Override
+    public String toString() {
+
+    	return  "Le " + jour + "/" + mois;
+    }
 }

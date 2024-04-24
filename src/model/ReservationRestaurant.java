@@ -13,7 +13,7 @@ public class ReservationRestaurant extends Reservation {
 
     @Override
     public String toString() {
-        return "Le " + jour + "/" + mois +"\nTable " + numeroTable + " pour le " + (numeroService == 1 ? "premier" : "deuxième") + " service.";
+        return super.toString()+"\nTable " + numeroTable + " pour le " + (numeroService == 1 ? "premier" : "deuxième") + " service.";
     } 
       
     

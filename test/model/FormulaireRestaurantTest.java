@@ -26,13 +26,13 @@ class FormulaireRestaurantTest {
 
 	@Test
 	void testGetNombrePersonnes() {
-		assertEquals(NB_PERSONNES, formulaire.getNombrePersonnes(),
+		assertEquals(NB_PERSONNES, formulaire.getNbPersonnes(),
 				"Le nombre de personnes devrait être " + NB_PERSONNES);
 	}
 
 	@Test
 	void testGetNumService() {
-		assertEquals(NUM_SERVICE, formulaire.getNumService(), "Le numéro de service devrait être " + NUM_SERVICE);
+		assertEquals(NUM_SERVICE, formulaire.getNuméroService(), "Le numéro de service devrait être " + NUM_SERVICE);
 	}
 
 	@Test

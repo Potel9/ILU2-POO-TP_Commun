@@ -29,47 +29,55 @@ public class CalendrierAnnuel {
         return calendrier[index];
     }
 
-    public void reserver(int mois, int jour) {
+    public boolean reserver(int jour,int mois ) {
         if (mois < 1 || mois >= calendrier.length) {
             throw new IllegalArgumentException("Mois invalide");
         }
-        calendrier[mois-1].reserver(jour);
+        if (calendrier[mois-1].estLibre(jour)== true) {
+        	calendrier[mois-1].reserver(jour);
+        	System.out.println("reservation du "+jour+"/"+mois+" devrait être possible");
+        	return true ; 
+        }
+        else {
+        	return false ;
+        }
     }
 
-    public boolean estLibre(int mois, int jour) {
-        if (mois < 1 || mois >= calendrier.length) {
-            throw new IllegalArgumentException("Mois invalide");
+    public boolean estLibre( int jour,int mois) {
+        if (mois < 1 || mois > calendrier.length) {
+            throw new IllegalArgumentException(jour+"/"+mois+" devrait être occuper");
         }
         return calendrier[mois-1].estLibre(jour);
-    }
+    }	
 
-    public class Mois {
+    private static class Mois {
 
         private String nom;
         private boolean[] jours;
 
-        public Mois(String nom, int nombreJours) {
+        private Mois(String nom, int nombreJours) {
             this.nom = nom;
-            // Initialisation des jours à false par défaut
             jours = new boolean[nombreJours];
-            Arrays.fill(jours, false);
+            for(int i = 0; i<jours.length;i++) {
+            	jours[i]= true ;
+            }
         }
 
-        public boolean estLibre(int jour) {
+        private boolean estLibre(int jour) {
             if (jour < 1 || jour > jours.length) {
                 throw new IllegalArgumentException("Jour invalide");
             }
-            return !jours[jour - 1];
+            return jours[jour - 1];
         }
 
-        public void reserver(int jour) {
+        private void reserver(int jour) {
             if (jour < 1 || jour > jours.length) {
                 throw new IllegalArgumentException("Jour invalide");
             }
-            if (!estLibre(jour)) {
+            if (estLibre(jour)== false) {
                 throw new IllegalStateException("Ce jour est déjà réservé");
             }
-            jours[jour - 1] = true;
+            jours[jour - 1] = false;
         }
     }
 }
